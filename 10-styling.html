@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <style>
+    .box {
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .box--small {
+      height: 90px;
+      width: 90px;
+    }
+
+    .box--medium {
+      height: 180px;
+      width: 180px;
+    }
+
+    .box--large {
+      height: 270px;
+      width: 270px;
+    }
+  </style>
+  <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    const SizeableColoredBox = ({ className = '', size, style, ...rest }) => {
+      const sizeClassName = size ? `box--${size}` : ''
+
+      return (
+        <div
+          className={`box ${className} ${sizeClassName}`}
+          style={{
+            fontStyle: 'italic',
+            ...style,
+          }}
+          {...rest}
+        />
+      )
+    }
+
+    const element = (
+      <div>
+        <SizeableColoredBox
+          size="small"
+          style={{
+            backgroundColor: 'lightblue'
+          }}
+        >
+          Small lightblue box
+        </SizeableColoredBox>
+        <SizeableColoredBox
+          size="medium"
+          style={{
+            backgroundColor: 'pink'
+          }}
+        >
+          Medium pink box
+        </SizeableColoredBox>
+        <SizeableColoredBox
+          size="large"
+          style={{
+            backgroundColor: 'orange'
+          }}
+        >
+          Large orange box
+        </SizeableColoredBox>
+      </div>
+    )
+
+    ReactDOM.render(element, rootElement)
+
+  </script>
+</body>
+
+</html>
